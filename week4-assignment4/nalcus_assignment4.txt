@@ -1,0 +1,195 @@
+mysql> source nalcus_assignment4.sql
+--------------
+/* nalcus_assignment4.sql
+   Nicholas Alcus
+   CS 150A, Fall 2018
+*/
+
+/* Query 0 */
+SELECT user(), current_date()
+--------------
+
++----------------+----------------+
+| user()         | current_date() |
++----------------+----------------+
+| root@localhost | 2018-09-13     |
++----------------+----------------+
+1 row in set (0.00 sec)
+
+Database changed
+--------------
+/* Query 1 */
+CREATE TABLE computer(serial_number INT(7) PRIMARY KEY, make VARCHAR(7), model VARCHAR(25), processor_type VARCHAR(25), memory_type VARCHAR(16), disk_size VARCHAR(16))
+--------------
+
+Query OK, 0 rows affected (4.73 sec)
+
+--------------
+DESCRIBE computer
+--------------
+
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| serial_number  | int(7)      | NO   | PRI | NULL    |       |
+| make           | varchar(7)  | YES  |     | NULL    |       |
+| model          | varchar(25) | YES  |     | NULL    |       |
+| processor_type | varchar(25) | YES  |     | NULL    |       |
+| memory_type    | varchar(16) | YES  |     | NULL    |       |
+| disk_size      | varchar(16) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+--------------
+/* Query 2 */
+INSERT INTO COMPUTER VALUES(9871234, 'HP', 'Pavilion 500-210qe', 'Intel i5-4530','6.0 GBytes', '1.0 TBytes')
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+INSERT INTO COMPUTER VALUES(9871245, 'HP', 'Pavilion 500-210qe', 'Intel i5-4530','6.0 GBytes', '1.0 TBytes')
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+INSERT INTO COMPUTER VALUES(9871256, 'HP', 'Pavilion 500-210qe', 'Intel i5-4530','6.0 GBytes', '1.0 TBytes')
+--------------
+
+Query OK, 1 row affected (0.04 sec)
+
+--------------
+INSERT INTO COMPUTER VALUES(9871267, 'HP', 'Pavilion 500-210qe', 'Intel i5-4530','6.0 GBytes', '1.0 TBytes')
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+INSERT INTO COMPUTER VALUES(9871278, 'HP', 'Pavilion 500-210qe', 'Intel i5-4530','6.0 GBytes', '1.0 TBytes')
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+/* Query 3 */
+ALTER TABLE computer ADD COLUMN processor_speed DECIMAL
+--------------
+
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+--------------
+/* Query 4 */
+SELECT * FROM computer
+--------------
+
++---------------+------+--------------------+----------------+-------------+------------+-----------------+
+| serial_number | make | model              | processor_type | memory_type | disk_size  | processor_speed |
++---------------+------+--------------------+----------------+-------------+------------+-----------------+
+|       9871234 | HP   | Pavilion 500-210qe | Intel i5-4530  | 6.0 GBytes  | 1.0 TBytes |            NULL |
+|       9871245 | HP   | Pavilion 500-210qe | Intel i5-4530  | 6.0 GBytes  | 1.0 TBytes |            NULL |
+|       9871256 | HP   | Pavilion 500-210qe | Intel i5-4530  | 6.0 GBytes  | 1.0 TBytes |            NULL |
+|       9871267 | HP   | Pavilion 500-210qe | Intel i5-4530  | 6.0 GBytes  | 1.0 TBytes |            NULL |
+|       9871278 | HP   | Pavilion 500-210qe | Intel i5-4530  | 6.0 GBytes  | 1.0 TBytes |            NULL |
++---------------+------+--------------------+----------------+-------------+------------+-----------------+
+5 rows in set (0.00 sec)
+
+--------------
+/* Query 5 */
+DESCRIBE computer
+--------------
+
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| serial_number   | int(7)        | NO   | PRI | NULL    |       |
+| make            | varchar(7)    | YES  |     | NULL    |       |
+| model           | varchar(25)   | YES  |     | NULL    |       |
+| processor_type  | varchar(25)   | YES  |     | NULL    |       |
+| memory_type     | varchar(16)   | YES  |     | NULL    |       |
+| disk_size       | varchar(16)   | YES  |     | NULL    |       |
+| processor_speed | decimal(10,0) | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+--------------
+/* Query 6 */
+ALTER TABLE computer DROP COLUMN processor_speed
+--------------
+
+Query OK, 0 rows affected (10.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+--------------
+/* Query 7 */
+ALTER TABLE computer RENAME computer_backup
+--------------
+
+ERROR 1050 (42S01): Table 'computer_backup' already exists
+--------------
+/* Query 8 */
+SHOW TABLES
+--------------
+
++-------------------+
+| Tables_in_library |
++-------------------+
+| author            |
+| bookauthor        |
+| bookcopies        |
+| bookloans         |
+| books             |
+| borrower          |
+| branch            |
+| categories        |
+| computer          |
+| computer_backup   |
+| publisher         |
++-------------------+
+11 rows in set (0.00 sec)
+
+--------------
+/* Query 9 */
+DROP TABLE computer_backup
+--------------
+
+Query OK, 0 rows affected (0.12 sec)
+
+--------------
+SHOW TABLES
+--------------
+
++-------------------+
+| Tables_in_library |
++-------------------+
+| author            |
+| bookauthor        |
+| bookcopies        |
+| bookloans         |
+| books             |
+| borrower          |
+| branch            |
+| categories        |
+| computer          |
+| publisher         |
++-------------------+
+10 rows in set (0.00 sec)
+
+--------------
+/* Query 10 */
+ALTER TABLE branch ADD COLUMN phone_number VARCHAR(14)
+--------------
+
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+--------------
+/* Query 11 */
+ALTER TABLE branch DROP COLUMN phone_number
+--------------
+
+Query OK, 0 rows affected (10.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> notee

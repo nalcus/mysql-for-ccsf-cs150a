@@ -1,0 +1,8 @@
+# This basically ignores the files that come from the instructor and/or
+# from the textbook. I only want to post the files that I produced myself
+# to be posted publicly.
+
+my_scripts/
+*.zip
+*.pdf
+CS150*

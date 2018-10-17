@@ -1,0 +1,431 @@
+mysql> source nalcus_assignment_3.sql
+--------------
+/* Assignment 3.sql
+  Nicholas Alcus
+   CS 150A, Fall 2018
+*/
+
+/* put the database name into this command */
+
+
+/* Query 0 */
+SELECT user(), current_date()
+--------------
+
++----------------+----------------+
+| user()         | current_date() |
++----------------+----------------+
+| root@localhost | 2018-09-13     |
++----------------+----------------+
+1 row in set (0.01 sec)
+
+Database changed
+--------------
+/* Query 1 */
+SELECT * FROM student WHERE dept_id IN (1,3)
+--------------
+
++------------+------------+-----------+---------+----------+
+| student_id | first_name | last_name | dept_id | tot_cred |
++------------+------------+-----------+---------+----------+
+| 14182      | Moszkowski | Jacob     | 1       |       73 |
+| 24746      | Scott      | Harry     | 3       |        4 |
+| 35175      | Quimby     | Max       | 3       |        4 |
+| 98056      | Di         | Luke      | 1       |       81 |
+| 98619      | Nagaraj    | Brook     | 1       |       61 |
++------------+------------+-----------+---------+----------+
+5 rows in set (0.00 sec)
+
+--------------
+/* Query 2 */
+SELECT faculty_id, title, status FROM faculty WHERE status="Full Time"
+--------------
+
++------------+---------------------+-----------+
+| faculty_id | title               | status    |
++------------+---------------------+-----------+
+| 15347      | Instructor          | Full Time |
+| 16807      | Professor           | Full Time |
+| 19368      | Professor           | Full Time |
+| 22591      | Instructor          | Full Time |
+| 25946      | Instructor          | Full Time |
+| 28097      | Instructor          | Full Time |
+| 28400      | Instructor          | Full Time |
+| 31955      | Associate Professor | Full Time |
+| 3199       | Professor           | Full Time |
+| 3335       | Instructor          | Full Time |
+| 34175      | Instructor          | Full Time |
+| 35579      | Professor           | Full Time |
+| 36897      | Professor           | Full Time |
+| 37687      | Associate Professor | Full Time |
+| 4034       | Instructor          | Full Time |
+| 41930      | Associate Professor | Full Time |
+| 4233       | Instructor          | Full Time |
+| 43779      | Instructor          | Full Time |
+| 48507      | Instructor          | Full Time |
+| 48570      | Instructor          | Full Time |
+| 50330      | Instructor          | Full Time |
+| 50885      | Instructor          | Full Time |
+| 52647      | Professor           | Full Time |
+| 57180      | Instructor          | Full Time |
+| 58558      | Instructor          | Full Time |
+| 59795      | Associate Professor | Full Time |
+| 63287      | Associate Professor | Full Time |
+| 63395      | Instructor          | Full Time |
+| 64871      | Instructor          | Full Time |
+| 6569       | Professor           | Full Time |
+| 65931      | Associate Professor | Full Time |
+| 72553      | Instructor          | Full Time |
+| 73623      | Associate Professor | Full Time |
+| 74420      | Professor           | Full Time |
+| 74426      | Associate Professor | Full Time |
+| 78699      | Associate Professor | Full Time |
+| 79081      | Professor           | Full Time |
+| 79653      | Professor           | Full Time |
+| 80759      | Instructor          | Full Time |
+| 81991      | Professor           | Full Time |
+| 90376      | Instructor          | Full Time |
+| 90643      | Instructor          | Full Time |
+| 95030      | Instructor          | Full Time |
+| 95709      | Professor           | Full Time |
+| 97302      | Professor           | Full Time |
+| 99052      | Professor           | Full Time |
++------------+---------------------+-----------+
+46 rows in set (0.00 sec)
+
+--------------
+/* Query 3 */
+SELECT staff_id, last_name, salary FROM staff WHERE last_name LIKE 'C%'
+--------------
+
++----------+-----------+----------+
+| staff_id | last_name | salary   |
++----------+-----------+----------+
+| 34175    | Coie      | 52000.00 |
+| 36897    | Cameron   | 85000.00 |
+| 63287    | Calvin    | 78000.00 |
+| 74426    | Coie      | 52000.00 |
++----------+-----------+----------+
+4 rows in set (0.00 sec)
+
+--------------
+/* Query 4 */
+SELECT last_name, first_name, salary FROM staff WHERE salary BETWEEN 50000 AND 70000 ORDER BY salary ASC
+--------------
+
++------------+------------+----------+
+| last_name  | first_name | salary   |
++------------+------------+----------+
+| Wilson     | Jim        | 50000.00 |
+| Viescas    | Carol      | 50000.00 |
+| Smith      | Sean       | 52000.00 |
+| Coie       | Caroline   | 52000.00 |
+| Smith      | David      | 52000.00 |
+| Coie       | Caroline   | 52000.00 |
+| Smith      | Jeffrey    | 52000.00 |
+| Hallmark   | Gary       | 53000.00 |
+| Jackson    | Levine     | 56000.00 |
+| Kennedy    | Erick      | 56000.00 |
+| Brown      | Robert     | 56000.00 |
+| Hallmark   | Alaina     | 57000.00 |
+| Bonnicksen | Joyce      | 60000.00 |
+| Hernandez  | Michael    | 60000.00 |
+| Bonny      | Kean       | 60000.00 |
+| Abolrous   | Sam        | 60000.00 |
+| Jamie      | Samy       | 60000.00 |
+| Helal      | Mahmoud    | 60000.00 |
+| Brehm      | Peter      | 60000.00 |
+| Black      | Alastair   | 60000.00 |
+| Sarkar     | Alex       | 65000.00 |
+| Isaac      | Max        | 66000.00 |
+| Lane       | Maria      | 68000.00 |
++------------+------------+----------+
+23 rows in set (0.00 sec)
+
+--------------
+/* Query 5 */
+SELECT course_id, sec_id, semester, year, building, room_number FROM section WHERE semester IN ('Fall', 'Spring') LIMIT 40
+--------------
+
++-----------+--------+----------+------+-----------+-------------+
+| course_id | sec_id | semester | year | building  | room_number |
++-----------+--------+----------+------+-----------+-------------+
+| 694       | 1      | Fall     | 2012 | Alumni    | 143         |
+| 362       | 2      | Fall     | 2016 | Alumni    | 547         |
+| 445       | 1      | Spring   | 2011 | Alumni    | 547         |
+| 581       | 1      | Spring   | 2015 | Alumni    | 547         |
+| 362       | 3      | Spring   | 2017 | Bronfman  | 700         |
+| 604       | 1      | Spring   | 2015 | Bronfman  | 700         |
+| 105       | 1      | Fall     | 2015 | Chandler  | 375         |
+| 200       | 2      | Fall     | 2012 | Chandler  | 375         |
+| 313       | 1      | Fall     | 2014 | Chandler  | 804         |
+| 599       | 1      | Spring   | 2013 | Chandler  | 804         |
+| 169       | 2      | Fall     | 2012 | Drown     | 757         |
+| 476       | 1      | Fall     | 2014 | Drown     | 757         |
+| 735       | 1      | Spring   | 2013 | Drown     | 757         |
+| 137       | 1      | Spring   | 2012 | Fairchild | 145         |
+| 237       | 2      | Fall     | 2015 | Fairchild | 145         |
+| 242       | 1      | Fall     | 2015 | Fairchild | 145         |
+| 338       | 1      | Spring   | 2017 | Fairchild | 145         |
+| 663       | 1      | Spring   | 2015 | Fairchild | 145         |
+| 843       | 1      | Fall     | 2014 | Fairchild | 145         |
+| 893       | 1      | Fall     | 2017 | Fairchild | 145         |
+| 760       | 1      | Spring   | 2014 | Garfield  | 119         |
+| 169       | 1      | Spring   | 2017 | Gates     | 314         |
+| 747       | 1      | Spring   | 2014 | Gates     | 314         |
+| 421       | 1      | Fall     | 2014 | Gates     | 707         |
+| 443       | 2      | Spring   | 2012 | Gates     | 707         |
+| 852       | 1      | Spring   | 2017 | Gates     | 707         |
+| 352       | 1      | Spring   | 2016 | Lambeau   | 348         |
+| 400       | 1      | Spring   | 2017 | Lambeau   | 348         |
+| 468       | 1      | Fall     | 2015 | Lambeau   | 348         |
+| 415       | 1      | Fall     | 2014 | Lamberton | 134         |
+| 426       | 1      | Spring   | 2016 | Lamberton | 134         |
+| 493       | 1      | Spring   | 2014 | Lamberton | 134         |
+| 559       | 1      | Fall     | 2012 | Lamberton | 134         |
+| 867       | 2      | Fall     | 2014 | Lamberton | 134         |
+| 960       | 1      | Fall     | 2015 | Lamberton | 134         |
+| 991       | 1      | Spring   | 2017 | Lamberton | 134         |
+| 304       | 1      | Fall     | 2015 | Lamberton | 143         |
+| 362       | 1      | Fall     | 2015 | Lamberton | 143         |
+| 489       | 1      | Fall     | 2017 | Lamberton | 143         |
+| 612       | 1      | Fall     | 2017 | Lamberton | 143         |
++-----------+--------+----------+------+-----------+-------------+
+40 rows in set (0.00 sec)
+
+--------------
+/* Query 6 */
+SELECT dept_name FROM dept WHERE building LIKE '%Palm%'
+--------------
+
++-----------+
+| dept_name |
++-----------+
+| Geology   |
+| English   |
++-----------+
+2 rows in set (0.00 sec)
+
+--------------
+/* Query 7 */
+SELECT student_id, course_id, sec_id, semester, year, grade FROM registration WHERE grade IS NULL
+--------------
+
+Empty set (0.01 sec)
+
+--------------
+/* Query 8 */
+SELECT course_id, title FROM course WHERE title LIKE 'Intro%'
+--------------
+
++-----------+--------------------------+
+| course_id | title                    |
++-----------+--------------------------+
+| 804       | Introduction to Burglary |
++-----------+--------------------------+
+1 row in set (0.00 sec)
+
+--------------
+/* Query 9 */
+SELECT course_id, sec_id, year, building FROM section WHERE semester = 'Fall'
+--------------
+
++-----------+--------+------+-----------+
+| course_id | sec_id | year | building  |
++-----------+--------+------+-----------+
+| 694       | 1      | 2012 | Alumni    |
+| 362       | 2      | 2016 | Alumni    |
+| 105       | 1      | 2015 | Chandler  |
+| 200       | 2      | 2012 | Chandler  |
+| 313       | 1      | 2014 | Chandler  |
+| 169       | 2      | 2012 | Drown     |
+| 476       | 1      | 2014 | Drown     |
+| 237       | 2      | 2015 | Fairchild |
+| 242       | 1      | 2015 | Fairchild |
+| 843       | 1      | 2014 | Fairchild |
+| 893       | 1      | 2017 | Fairchild |
+| 421       | 1      | 2014 | Gates     |
+| 468       | 1      | 2015 | Lambeau   |
+| 415       | 1      | 2014 | Lamberton |
+| 559       | 1      | 2012 | Lamberton |
+| 867       | 2      | 2014 | Lamberton |
+| 960       | 1      | 2015 | Lamberton |
+| 304       | 1      | 2015 | Lamberton |
+| 362       | 1      | 2015 | Lamberton |
+| 489       | 1      | 2017 | Lamberton |
+| 612       | 1      | 2017 | Lamberton |
+| 626       | 1      | 2016 | Lamberton |
+| 274       | 1      | 2012 | Main      |
+| 400       | 2      | 2013 | Main      |
+| 461       | 1      | 2012 | Main      |
+| 258       | 1      | 2017 | Main      |
+| 561       | 1      | 2016 | Main      |
+| 192       | 1      | 2012 | Polya     |
+| 808       | 1      | 2013 | Polya     |
+| 974       | 1      | 2013 | Polya     |
+| 376       | 1      | 2016 | Power     |
+| 468       | 2      | 2017 | Power     |
+| 960       | 2      | 2016 | Power     |
+| 527       | 1      | 2014 | Saucon    |
+| 642       | 1      | 2014 | Saucon    |
+| 401       | 1      | 2013 | Saucon    |
+| 545       | 1      | 2011 | Saucon    |
+| 748       | 1      | 2013 | Saucon    |
+| 927       | 1      | 2012 | Saucon    |
+| 949       | 1      | 2017 | Saucon    |
+| 959       | 1      | 2016 | Saucon    |
+| 366       | 1      | 2015 | Saucon    |
+| 105       | 2      | 2012 | Taylor    |
+| 239       | 1      | 2016 | Taylor    |
+| 867       | 1      | 2016 | Taylor    |
+| 334       | 1      | 2015 | Taylor    |
+| 496       | 1      | 2011 | Taylor    |
+| 603       | 1      | 2013 | Taylor    |
+| 486       | 1      | 2015 | Whitman   |
+| 158       | 1      | 2017 | Whitman   |
+| 482       | 1      | 2015 | Whitman   |
++-----------+--------+------+-----------+
+51 rows in set (0.00 sec)
+
+--------------
+/* Query 10 */
+SELECT building, room_number, capacity FROM classroom WHERE capacity BETWEEN 30 AND 70
+--------------
+
++----------+-------------+----------+
+| building | room_number | capacity |
++----------+-------------+----------+
+| Alumni   | 143         |       47 |
+| Garfield | 119         |       59 |
+| Gates    | 707         |       65 |
+| Grace    | 40          |       34 |
+| Lambeau  | 348         |       51 |
+| Main     | 45          |       30 |
+| Rathbone | 261         |       60 |
+| Whitman  | 434         |       32 |
++----------+-------------+----------+
+8 rows in set (0.00 sec)
+
+--------------
+/* Query 11 */
+SELECT * FROM classroom WHERE building='Taylor' AND capacity > 30
+--------------
+
++----------+-------------+----------+
+| building | room_number | capacity |
++----------+-------------+----------+
+| Taylor   | 183         |       71 |
+| Taylor   | 812         |      115 |
++----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+--------------
+/* Query 12 */
+SELECT last_name, dept_id FROM student WHERE NOT(last_name='Evan' OR last_name='William')
+--------------
+
++-----------+---------+
+| last_name | dept_id |
++-----------+---------+
+| Jacob     | 1       |
+| Billy     | 17      |
+| Conner    | 2       |
+| David     | 9       |
+| Dexter    | 13      |
+| Henry     | 18      |
+| Harry     | 3       |
+| Jake      | 5       |
+| Lewis     | 18      |
+| Sam       | 10      |
+| Max       | 3       |
+| Dylan     | 19      |
+| Cody      | 10      |
+| Nathan    | 16      |
+| Taylor    | 5       |
+| Bobby     | 17      |
+| Sam       | 17      |
+| George    | 7       |
+| Arthur    | 12      |
+| Andy      | 13      |
+| James     | 2       |
+| Spencer   | 12      |
+| Blake     | 13      |
+| Adam      | 14      |
+| Hayden    | 16      |
+| Samuel    | 14      |
+| Rory      | 20      |
+| Michael   | 12      |
+| Jenson    | 6       |
+| Jackson   | 15      |
+| Zac       | 19      |
+| Aaron     | 18      |
+| Jamie     | 4       |
+| Sonny     | 12      |
+| Bailey    | 20      |
+| Harvey    | 9       |
+| Edward    | 17      |
+| Ryan      | 2       |
+| Kian      | 17      |
+| Frankie   | 10      |
+| Freddie   | 19      |
+| Toby      | 8       |
+| Charlie   | 16      |
+| Maged     | 15      |
+| Leo       | 5       |
+| Jack      | 11      |
+| Benjamin  | 10      |
+| Jude      | 8       |
+| Brown     | 13      |
+| Adrian    | 10      |
+| Ben       | 11      |
+| Ryan      | 13      |
+| Ryan      | 6       |
+| Daniel    | 18      |
+| Alexander | 19      |
+| Isaac     | 4       |
+| Thomas    | 13      |
+| Oscar     | 17      |
+| Luke      | 1       |
+| Brook     | 1       |
+| Joseph    | 5       |
++-----------+---------+
+61 rows in set (0.00 sec)
+
+--------------
+/* Query 13 */
+SELECT first_name, last_name FROM staff WHERE date_hired LIKE '1990%'
+--------------
+
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Jim        | Glynn     |
+| Deb        | Waldal    |
+| Kathryn    | Patterson |
+| Frankie    | Morgan    |
+| Carol      | Viescas   |
+| Katherine  | Ehrlich   |
+| Jeffrey    | Smith     |
+| Alaina     | Hallmark  |
++------------+-----------+
+8 rows in set, 1 warning (0.00 sec)
+
+--------------
+/* Query 14 */
+SELECT last_name, first_name, dept_id FROM student WHERE last_name LIKE '_o%'
+--------------
+
++-----------+------------+---------+
+| last_name | first_name | dept_id |
++-----------+------------+---------+
+| Conner    | Pearlman   | 2       |
+| Cody      | Norman     | 10      |
+| Bobby     | Maria      | 17      |
+| Rory      | Paul       | 20      |
+| Sonny     | Soni       | 12      |
+| Toby      | Amy        | 8       |
+| Joseph    | Hawthorne  | 5       |
++-----------+------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> notee
